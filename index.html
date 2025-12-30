@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Clima Tempo</title>
+</head>
+<body>
+
+    <main class="container">
+
+        <header>
+
+            <h1>Clima Tempo:Agora</h1>
+
+                <p>Descubra o clima em qualquer cidade</p>
+
+        </header>
+
+
+        <section class="search-box">
+
+            <input type="text" id="city-input" placeholder="Digite o nome da cidade...">
+            <button id="search-button"> Buscar</button>
+
+        </section>
+
+        <section class="weather-result" id="weather-result">
+
+                <div class="city-name">
+
+                    <h2 id="city"> São Paulo, BR</h2>
+
+                </div>
+
+                <div class="temp-container">
+                    <img  id="weatcher-icon" src="http://openweathermap.org/img/wn/01d@2x.png" alt="clima" >
+                    <span id="temp">25°C</span>
+                </div>
+
+                  <p id="description"> Céu Limpo</p>
+
+                <div class="details">
+
+                    <div class="detail-item">
+
+                        <span>Umidade</span>
+                        
+                        <strong id="humidity">60%</strong>
+
+                    </div>
+
+                    <div class="detail-item">
+
+                        <span>Vento</span>
+                        <strong id="wind">15 Km/h</strong>
+
+
+                    </div>
+
+
+
+                </div>
+
+
+        </section>
+
+
+
+    </main>
+    
+
+    <footer class="main-footer">
+        <div class="footer-wrapper">
+            <div class="footer-dev">
+                Desenvolvido com <span>🚀</span> por 
+                <a href="https://www.linkedin.com/in/gabriel-alexandre-marques-cardoso-0041101ab/" target="_blank">Gabriel Cardoso</a>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
