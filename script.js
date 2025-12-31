@@ -49,7 +49,7 @@ async function buscarCidade(cidade) {
     result.style.display = "none";
     loading.style.display = "block";
 
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${cidade}&appid=${key}&lang=pt_br&units=metric`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${cidade},BR&appid=${key}&lang=pt_br&units=metric`;
 
     try {
         const resposta = await fetch(url);
