@@ -27,46 +27,34 @@
 
         </section>
 
-        <section class="weather-result" id="weather-result">
+        <p id="loading" class="hidden"">
+            Buscando informações... ⏳
+        </p>
 
-                <div class="city-name">
-
-                    <h2 id="city"> São Paulo, BR</h2>
-
+        <section class="weather-result " id="weather-result">
+            <div class="city-name">
+                <h2 id="city"></h2>
+            </div>
+        
+            <div class="temp-container">
+                <img id="weather-icon" src="" alt="clima">
+                <span id="temp"></span>
+            </div>
+        
+            <p id="description"></p>
+        
+            <div class="details">
+                <div class="detail-item">
+                    <span>Umidade</span>
+                    <strong id="humidity"></strong>
                 </div>
-
-                <div class="temp-container">
-                    <img  id="weatcher-icon" src="http://openweathermap.org/img/wn/01d@2x.png" alt="clima" >
-                    <span id="temp">25°C</span>
+        
+                <div class="detail-item">
+                    <span>Vento</span>
+                    <strong id="wind"></strong>
                 </div>
-
-                  <p id="description"> Céu Limpo</p>
-
-                <div class="details">
-
-                    <div class="detail-item">
-
-                        <span>Umidade</span>
-                        
-                        <strong id="humidity">60%</strong>
-
-                    </div>
-
-                    <div class="detail-item">
-
-                        <span>Vento</span>
-                        <strong id="wind">15 Km/h</strong>
-
-
-                    </div>
-
-
-
-                </div>
-
-
+            </div>
         </section>
-
 
 
     </main>
