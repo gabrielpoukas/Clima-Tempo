@@ -20,18 +20,22 @@ function colocarDadosNaTela(dados) {
     document.querySelector("#weather-result").style.display = "block";
 
     function atualizarFundo(clima) {
-        document.body.classList.remove("clouds", "clear", "rain", "snow");
+        const body = document.body;
+        body.classList.remove("clouds", "clear", "rain", "snow");
     
-        const estadoClima = clima.toLowerCase();
+        const estado = clima.toLowerCase();
     
-        if (estadoClima.includes("clouds")) {
-            document.body.classList.add("clouds");
-        } else if (estadoClima.includes("clear")) {
-            document.body.classList.add("clear");
-        } else if (estadoClima.includes("rain") || estadoClima.includes("drizzle")) {
-            document.body.classList.add("rain");
-        } else if (estadoClima.includes("snow")) {
-            document.body.classList.add("snow");
+        if (estado.includes("nuven") || estado.includes("cloud") || estado.includes("nublado") || estado.includes("mist")) {
+            body.classList.add("clouds");
+        } 
+        else if (estado.includes("limpo") || estado.includes("clear") || estado.includes("sol") || estado.includes("ensolarado")) {
+            body.classList.add("clear");
+        } 
+        else if (estado.includes("chuva") || estado.includes("rain") || estado.includes("drizzle") || estado.includes("tempestade")) {
+            body.classList.add("rain");
+        } 
+        else if (estado.includes("neve") || estado.includes("snow")) {
+            body.classList.add("snow");
         }
     }
     
@@ -45,28 +49,57 @@ function colocarDadosNaTela(dados) {
 async function buscarCidade(cidade) {
     const loading = document.querySelector("#loading");
     const result = document.querySelector("#weather-result");
+    const forecast = document.querySelector("#forecast-container");
 
-    result.style.display = "none";
-    loading.style.display = "block";
+    result.classList.add("hidden");
+    forecast.classList.add("hidden");
+    loading.classList.remove("hidden");
 
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${cidade},BR&appid=${key}&lang=pt_br&units=metric`;
+    const urlCurrent = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(cidade)},BR&appid=${key}&lang=pt_br&units=metric`;
+    const urlForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${encodeURIComponent(cidade)},BR&appid=${key}&lang=pt_br&units=metric`;
 
     try {
-        const resposta = await fetch(url);
-        
-        if (!resposta.ok) {
-            throw new Error("Cidade não encontrada. Verifique o nome!");
-        }
+        const [resCurrent, resForecast] = await Promise.all([
+            fetch(urlCurrent),
+            fetch(urlForecast)
+        ]);
 
-        const dados = await resposta.json();
-        
-        loading.style.display = "none";
-        colocarDadosNaTela(dados);
+        if (!resCurrent.ok || !resForecast.ok) throw new Error("Cidade não encontrada!");
+
+        const dadosCurrent = await resCurrent.json();
+        const dadosForecast = await resForecast.json();
+
+        loading.classList.add("hidden");
+        result.classList.remove("hidden");
+        forecast.classList.remove("hidden");
+
+        colocarDadosNaTela(dadosCurrent);
+        mostrarPrevisao(dadosForecast);
 
     } catch (erro) {
-        loading.style.display = "none";
+        loading.classList.add("hidden");
         alert(erro.message);
     }
+}
+
+function mostrarPrevisao(dados) {
+    const container = document.querySelector("#forecast-container");
+    container.innerHTML = ""; 
+
+    const listaDias = dados.list.filter(item => item.dt_txt.includes("12:00:00"));
+
+    listaDias.forEach(item => {
+        const data = new Date(item.dt * 1000);
+        const diaSemana = data.toLocaleDateString('pt-BR', { weekday: 'short' }).replace('.', '');
+
+        container.innerHTML += `
+            <div class="forecast-item">
+                <p class="day">${diaSemana}</p>
+                <img src="https://openweathermap.org/img/wn/${item.weather[0].icon}.png" alt="clima">
+                <p class="temp">${Math.floor(item.main.temp)}°C</p>
+            </div>
+        `;
+    });
 }
 function cliqueiNoBotao() {
     const cidade = document.querySelector("#city-input").value;

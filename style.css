@@ -159,7 +159,7 @@ animation: fadeIn 0.6s ease;
 }
 
 #weather-icon {
-    width: 120px; /* Ícone do clima maior */
+    width: 120px; 
 }
 
 @keyframes fadeIn {
@@ -177,6 +177,40 @@ justify-content: center;
 gap: 10px;
 margin: 1.5rem 0;;
 
+}
+
+.forecast-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--glass-border);
+    overflow-x: auto; 
+}
+
+.forecast-item {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px;
+    border-radius: 15px;
+    text-align: center;
+    min-width: 70px;
+    flex: 1;
+}
+
+.forecast-item .day {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.forecast-item img {
+    width: 40px;
+}
+
+.forecast-item .temp {
+    font-weight: bold;
+    font-size: 0.9rem;
 }
 
 #temp{
@@ -321,15 +355,25 @@ font-size: 1.1rem;
 }
 
 body.clouds { 
-    background-image: linear-gradient(var(--overlay), var(--overlay)), url('https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?auto=format&fit=crop&w=1920&q=80'); 
+    background: linear-gradient(var(--overlay), var(--overlay)), 
+    url('https://images.unsplash.com/photo-1534088568595-a066f77c3ed2?q=80&w=1920') no-repeat center center fixed !important;
+    background-size: cover !important;
 }
+
 body.clear { 
-    background-image: linear-gradient(var(--overlay), var(--overlay)), url('https://images.unsplash.com/photo-1506466010722-395aa2bef877?auto=format&fit=crop&w=1920&q=80'); 
+    background: linear-gradient(var(--overlay), var(--overlay)), 
+    url('https://images.unsplash.com/photo-1506466010722-395aa2bef877?q=80&w=1920') no-repeat center center fixed !important;
+    background-size: cover !important;
 }
 body.rain { 
-    background-image: linear-gradient(var(--overlay), var(--overlay)), url('https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?auto=format&fit=crop&w=1920&q=80'); 
+    background: linear-gradient(var(--overlay), var(--overlay)), 
+    url('https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?q=80&w=1920') no-repeat center center fixed !important;
+    background-size: cover !important;
 }
-body.snow { 
-    background-image: linear-gradient(var(--overlay), var(--overlay)), url('https://images.unsplash.com/photo-1491002052546-bf38f186af56?auto=format&fit=crop&w=1920&q=80');
 
+body.snow { 
+    background: linear-gradient(var(--overlay), var(--overlay)), 
+    url('https://images.unsplash.com/photo-1483664852095-d6cc6870702d?auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed !important;
+    background-size: cover !important;
+    background-color: #ecf0f1;
 }
